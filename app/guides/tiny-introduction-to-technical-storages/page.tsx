@@ -168,7 +168,6 @@ export default function TinyIntroductionGuidePage() {
             </a>
             <span className="text-slate-500 dark:text-slate-400"> by ExperimentalIdea</span>
           </li>
-          <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">Use Discord channel #756677711111389236 for build-specific discussion.</li>
           <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
             <a
               href="https://storagecatalog.org/item-layout-tool/"
