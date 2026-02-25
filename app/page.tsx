@@ -15,12 +15,11 @@ export default function HomePage() {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
       <header className="mb-7 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-        <p className="text-xs font-semibold uppercase tracking-wide text-sky-800 dark:text-sky-400">guide.storagecatalog.org</p>
         <h1 className="mt-2 text-3xl font-semibold leading-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
           Beginner guides for Minecraft storage tech
         </h1>
         <p className="mt-3 max-w-3xl text-slate-700 dark:text-slate-300">
-          Learn concepts and pick reliable systems with step-by-step guide pages.
+          Learn concepts and pick reliable systems with practical guides for new and intermediate builders.
         </p>
       </header>
 

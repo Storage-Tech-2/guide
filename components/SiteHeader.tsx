@@ -57,8 +57,8 @@ export function SiteHeader() {
             priority
           />
           <div className="leading-tight">
-            <p className="text-sm font-semibold tracking-wide text-slate-900 dark:text-slate-100">Minecraft Storage Catalog</p>
-            <p className="text-xs text-slate-600 dark:text-slate-400">Beginner Guides</p>
+            <p className="text-sm font-semibold tracking-wide text-slate-900 dark:text-slate-100">Storage Guides</p>
+            <p className="text-xs text-slate-600 dark:text-slate-400">Minecraft Storage Catalog</p>
           </div>
         </Link>
 

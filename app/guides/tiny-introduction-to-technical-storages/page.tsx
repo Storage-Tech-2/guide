@@ -32,19 +32,19 @@ const mainStorages = [
   {
     level: "Small / Simple",
     name: "Compact Categorizer",
-    href: "https://discord.com/channels/1161803566265143306/1445867559466434721",
+    href: "https://storagecatalog.org/archives/MIS001-Compact-Categorizer/",
   },
   {
     level: "Medium / Intermediate",
     name: "Yamis",
     href: "https://discord.com/channels/1161803566265143306/1445868206601535498",
     altName: "XianyuMIS v2",
-    altHref: "https://discord.com/channels/748542142347083868/1465491404540088372/1468760142848721203",
+    altHref: "https://storagecatalog.org/archives/MIS010-XianyuMIS-V2/",
   },
   {
     level: "Large / Complex",
     name: "Yams v2",
-    href: "https://discord.com/channels/748542142347083868/1275462763791126558/1460475730654924811",
+    href: "https://storagecatalog.org/archives/LS006-Yams-v2-3/",
   },
 ];
 
@@ -112,14 +112,12 @@ export default function TinyIntroductionGuidePage() {
             </li>
           ))}
           <li className="rounded-lg border border-white bg-white/90 px-3 py-2 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
-            <a
-              href="https://github.com/lebip/st_storages/"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/guides/storage-guide/"
               className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400"
             >
-              GitHub Main Storage List
-            </a>
+              Main Storage List
+            </Link>
           </li>
         </ul>
       </section>
@@ -127,9 +125,20 @@ export default function TinyIntroductionGuidePage() {
       <section className="mb-5 rounded-2xl border border-violet-200 bg-violet-50 p-5 shadow-sm dark:border-violet-900 dark:bg-violet-950/30">
         <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">3. Learning about storage systems</h2>
         <ul className="mt-3 space-y-2 text-sm text-slate-800 dark:text-slate-200">
-          <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">Read the core concept channels in Discord: #811675605304868895 and #869352287708012634</li>
-          <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">Browse the archive, test systems in a world, and take them apart to understand behavior.</li>
-          <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">Ask specific questions in #748549293433946133 with screenshots and exact symptoms.</li>
+          <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
+          Read the{" "}
+          <a href="https://storagecatalog.org/dictionary/" target="_blank" rel="noreferrer" className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">
+            dictionary
+          </a>
+          </li>
+          <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
+          Browse the{" "}
+          <a href="https://storagecatalog.org/archives/" target="_blank" rel="noreferrer" className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">
+            archive
+          </a>
+          , test systems in a world, and take them apart to understand behavior.
+          </li>
+          <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">Ask specific questions in <a href="https://discord.gg/EYpcYXDrZt" target="_blank" rel="noreferrer" className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">Discord</a> with screenshots and exact symptoms.</li>
         </ul>
       </section>
 
@@ -138,7 +147,7 @@ export default function TinyIntroductionGuidePage() {
         <ul className="mt-3 space-y-2 text-sm text-slate-800 dark:text-slate-200">
           <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
             <a
-              href="https://discord.com/channels/748542142347083868/748547221338849330/1254110020988174387"
+              href="https://docs.google.com/document/d/1efPm6aXIggLMwxNIZPTcl0Xtip6hWFsj/edit?usp=sharing&ouid=103572861559058809114&rtpof=true&sd=true"
               target="_blank"
               rel="noreferrer"
               className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400"
@@ -168,7 +177,6 @@ export default function TinyIntroductionGuidePage() {
             >
               Item Layout Tool
             </a>
-            <span className="text-slate-500 dark:text-slate-400"> by Andrews54757</span>
           </li>
         </ul>
       </section>

@@ -164,21 +164,21 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
       <div className="relative">
         <div
           aria-hidden="true"
-          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-slate-50 to-transparent transition-opacity duration-200 dark:from-slate-950 ${
+          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-slate-100 to-transparent dark:from-slate-950 ${
             canScrollLeft ? "opacity-100" : "opacity-0"
           }`}
         />
         <div
           aria-hidden="true"
-          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-slate-50 to-transparent transition-opacity duration-200 dark:from-slate-950 ${
+          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-gradient-to-l from-slate-100 to-transparent dark:from-slate-950 ${
             canScrollRight ? "opacity-100" : "opacity-0"
           }`}
         />
 
-        <div className="overflow-hidden">
+        <div className="overflow-hidden pb-2">
           <div
             ref={scrollerRef}
-            className="overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory pb-5 -mb-5 pr-1"
+            className="overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory pb-8 -mb-8 pr-1"
           >
             <div
               className="grid min-w-max gap-x-4 gap-y-0"
