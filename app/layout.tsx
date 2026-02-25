@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { JsonLd } from "@/components/JsonLd";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
@@ -23,6 +24,13 @@ export const metadata: Metadata = {
   },
   description:
     "Guides and curated resources for getting started with Minecraft storage tech.",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: "Storage Tech Beginner Guides",
     description:
@@ -50,6 +58,17 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="min-h-screen bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Storage Tech Beginner Guides",
+              url: "https://guide.storagecatalog.org/",
+              description:
+                "Guides and curated resources for getting started with Minecraft storage tech.",
+              inLanguage: "en",
+            }}
+          />
           <SiteHeader />
           {children}
           <SiteFooter />

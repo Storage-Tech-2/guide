@@ -1,8 +1,28 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  description: "The requested page was not found on Storage Tech Beginner Guides.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function NotFoundPage() {
   return (
     <main className="mx-auto flex min-h-[60vh] w-full max-w-4xl flex-col items-start justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Page not found",
+          url: "https://guide.storagecatalog.org/404",
+          description: "The requested page was not found on Storage Tech Beginner Guides.",
+        }}
+      />
       <p className="text-xs font-semibold uppercase tracking-wide text-sky-800 dark:text-sky-400">404</p>
       <h1 className="mt-2 text-3xl font-semibold text-slate-900 dark:text-slate-100">Page not found</h1>
       <p className="mt-3 max-w-2xl text-slate-700 dark:text-slate-300">

@@ -1,5 +1,23 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { getAllGuides, getFeaturedGuide } from "@/lib/guides";
+
+export const metadata: Metadata = {
+  title: "Beginner Guides for Minecraft Storage Tech",
+  description:
+    "Start learning Minecraft storage tech with beginner-friendly guides, featured recommendations, and quick links to core tools.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Beginner Guides for Minecraft Storage Tech",
+    description:
+      "Start learning Minecraft storage tech with beginner-friendly guides, featured recommendations, and quick links to core tools.",
+    url: "/",
+    type: "website",
+  },
+};
 
 const quickLinks = [
   { label: "Design Archive", href: "https://storagecatalog.org/archives/" },
@@ -14,6 +32,30 @@ export default function HomePage() {
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Beginner Guides for Minecraft Storage Tech",
+          url: "https://guide.storagecatalog.org/",
+          description:
+            "Start learning Minecraft storage tech with beginner-friendly guides, featured recommendations, and quick links to core tools.",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Storage Tech Beginner Guides",
+            url: "https://guide.storagecatalog.org/",
+          },
+          mainEntity: {
+            "@type": "ItemList",
+            itemListElement: guides.map((guide, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: `https://guide.storagecatalog.org/guides/${guide.slug}/`,
+              name: guide.title,
+            })),
+          },
+        }}
+      />
       <header className="mb-7 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <h1 className="mt-2 text-3xl font-semibold leading-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
           Beginner guides for Minecraft storage tech

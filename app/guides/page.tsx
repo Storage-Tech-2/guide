@@ -1,8 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { getAllGuides } from "@/lib/guides";
 
-export const metadata = {
-  title: "Guides",
+export const metadata: Metadata = {
+  title: "Storage Tech Guides",
+  description:
+    "Browse all beginner and reference guides for Minecraft storage technology.",
+  alternates: {
+    canonical: "/guides/",
+  },
+  openGraph: {
+    title: "Storage Tech Guides",
+    description:
+      "Browse all beginner and reference guides for Minecraft storage technology.",
+    url: "/guides/",
+    type: "website",
+  },
 };
 
 export default function GuidesIndexPage() {
@@ -10,6 +24,22 @@ export default function GuidesIndexPage() {
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Storage Tech Guides",
+          url: "https://guide.storagecatalog.org/guides/",
+          description:
+            "Browse all beginner and reference guides for Minecraft storage technology.",
+          hasPart: guides.map((guide) => ({
+            "@type": "Article",
+            headline: guide.title,
+            url: `https://guide.storagecatalog.org/guides/${guide.slug}/`,
+            description: guide.description,
+          })),
+        }}
+      />
       <header className="mb-7 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <p className="text-xs font-semibold uppercase tracking-wide text-sky-800 dark:text-sky-400">Guides</p>
         <h1 className="mt-2 text-3xl font-semibold text-slate-900 dark:text-slate-100 sm:text-4xl">Storage tech guides</h1>

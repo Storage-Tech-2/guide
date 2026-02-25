@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Tiny Introduction to Technical Storages",
   description:
     "Beginner guide: recommended videos, proven main storages, what to study, and where to ask for help.",
+  alternates: {
+    canonical: "/guides/tiny-introduction-to-technical-storages/",
+  },
+  openGraph: {
+    title: "Tiny Introduction to Technical Storages",
+    description:
+      "Beginner guide: recommended videos, proven main storages, what to study, and where to ask for help.",
+    url: "/guides/tiny-introduction-to-technical-storages/",
+    type: "article",
+  },
 };
 
 const recommendedVideos = [
@@ -51,6 +62,27 @@ const mainStorages = [
 export default function TinyIntroductionGuidePage() {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          headline: "Tiny Introduction to Technical Storages",
+          description:
+            "Beginner guide: recommended videos, proven main storages, what to study, and where to ask for help.",
+          url: "https://guide.storagecatalog.org/guides/tiny-introduction-to-technical-storages/",
+          author: {
+            "@type": "Person",
+            name: "TPS Nighthunter",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Storage Catalog",
+            url: "https://storagecatalog.org/",
+          },
+          dateModified: "2026-02-22",
+          inLanguage: "en",
+        }}
+      />
       <div className="mb-6">
         <Link href="/guides/" className="text-sm font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">
           Back to guides

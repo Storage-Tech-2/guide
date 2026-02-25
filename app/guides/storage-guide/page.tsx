@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import SectionComparisonColumns from "./section-comparison-columns";
 
 export const metadata: Metadata = {
   title: "List of Complete Main Storages",
   description:
     "Structured overview of complete main storages published in Storage Tech, with sorting capabilities, speed, size, and links.",
+  alternates: {
+    canonical: "/guides/storage-guide/",
+  },
+  openGraph: {
+    title: "List of Complete Main Storages",
+    description:
+      "Structured overview of complete main storages published in Storage Tech, with sorting capabilities, speed, size, and links.",
+    url: "/guides/storage-guide/",
+    type: "article",
+  },
 };
 
 type ResourceLink = {
@@ -274,6 +285,27 @@ const storageImages: Record<string, string> = {
 export default function StorageGuidePage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          headline: "List of Complete Main Storages",
+          description:
+            "Structured overview of complete main storages published in Storage Tech, with sorting capabilities, speed, size, and links.",
+          url: "https://guide.storagecatalog.org/guides/storage-guide/",
+          author: {
+            "@type": "Person",
+            name: "bipim",
+            url: "https://github.com/lebip",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Storage Catalog",
+            url: "https://storagecatalog.org/",
+          },
+          inLanguage: "en",
+        }}
+      />
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <Link href="/guides/" className="text-sm font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">
           Back to guides
