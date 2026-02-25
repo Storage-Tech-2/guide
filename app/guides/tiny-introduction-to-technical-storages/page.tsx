@@ -67,6 +67,7 @@ export default function TinyIntroductionGuidePage() {
           questions.
         </p>
         <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: February 22, 2026</p>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Author: TPS Nighthunter</p>
       </header>
 
       <section className="mb-5 rounded-2xl border border-cyan-200 bg-cyan-50 p-5 shadow-sm dark:border-cyan-900 dark:bg-cyan-950/30">

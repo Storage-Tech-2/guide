@@ -3,6 +3,7 @@ export type GuideMeta = {
   title: string;
   description: string;
   updated: string;
+  author?: string;
   featured?: boolean;
 };
 
@@ -13,6 +14,7 @@ const guides: GuideMeta[] = [
     description:
       "A beginner path for learning storage tech: recommended videos, proven main storages, and where to ask focused questions.",
     updated: "February 22, 2026",
+    author: "TPS Nighthunter",
     featured: true,
   },
   {
@@ -20,7 +22,7 @@ const guides: GuideMeta[] = [
     title: "List of Complete Main Storages",
     description:
       "A structured index of published complete storage systems with sorting capabilities, speed, size, and reference links.",
-    updated: "Living document",
+    updated: "February 1, 2026",
   },
 ];
 

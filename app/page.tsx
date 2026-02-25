@@ -29,6 +29,9 @@ export default function HomePage() {
           <h2 className="mt-2 text-2xl font-semibold text-slate-900 dark:text-slate-100">{featuredGuide.title}</h2>
           <p className="mt-2 text-slate-700 dark:text-slate-300">{featuredGuide.description}</p>
           <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Updated {featuredGuide.updated}</p>
+          {featuredGuide.author ? (
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Author {featuredGuide.author}</p>
+          ) : null}
           <Link
             href={`/guides/${featuredGuide.slug}/`}
             className="mt-4 inline-flex rounded-md border border-sky-300 bg-sky-100 px-4 py-2 text-sm font-semibold text-sky-900 transition hover:bg-sky-200 dark:border-sky-500 dark:bg-sky-500 dark:text-white dark:hover:bg-sky-400"
