@@ -250,16 +250,12 @@ export function SiteHeader() {
 
               <a
                 href="https://storagecatalog.org/archives/"
-                target="_blank"
-                rel="noreferrer"
                 className="rounded-xl px-3 py-2 font-medium text-slate-900 hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-800"
               >
                 Design Archive
               </a>
               <a
                 href="https://storagecatalog.org/dictionary/"
-                target="_blank"
-                rel="noreferrer"
                 className="rounded-xl px-3 py-2 font-medium text-slate-900 hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-800"
               >
                 Dictionary
