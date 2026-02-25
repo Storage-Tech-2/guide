@@ -5,6 +5,7 @@
     "build": "next build"
   },
   "dependencies": {
+    "@next/third-parties": "^16.1.6",
     "@tailwindcss/postcss": "^4.2.1",
     "next": "15.1.10",
     "postcss": "^8.5.6",

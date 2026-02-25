@@ -37,7 +37,7 @@ const mainStorages = [
   {
     level: "Medium / Intermediate",
     name: "Yamis",
-    href: "https://discord.com/channels/1161803566265143306/1445868206601535498",
+    href: "https://storagecatalog.org/archives/MIS002-YAMIS-Multi-Item-Storage-System/",
     altName: "XianyuMIS v2",
     altHref: "https://storagecatalog.org/archives/MIS010-XianyuMIS-V2/",
   },

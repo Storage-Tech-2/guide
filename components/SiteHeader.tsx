@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getAllGuides } from "@/lib/guides";
 
 const navItems = [
@@ -32,6 +32,9 @@ export function SiteHeader() {
   const pathname = usePathname() ?? "/";
   const currentPath = useMemo(() => normalizePath(pathname), [pathname]);
   const mobileMenuRef = useRef<HTMLDetailsElement | null>(null);
+  const lastScrollYRef = useRef(0);
+  const [hideOnScroll, setHideOnScroll] = useState(false);
+  const isGuideRoute = isActivePath(currentPath, "/guides/");
   const guides = getAllGuides();
 
   useEffect(() => {
@@ -40,12 +43,55 @@ export function SiteHeader() {
     }
   }, [currentPath]);
 
+  useEffect(() => {
+    if (!isGuideRoute) {
+      setHideOnScroll(false);
+      return;
+    }
+
+    lastScrollYRef.current = window.scrollY;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollYRef.current;
+
+      if (currentY < 24) {
+        setHideOnScroll(false);
+        lastScrollYRef.current = currentY;
+        return;
+      }
+
+      if (Math.abs(delta) < 6) {
+        return;
+      }
+
+      if (delta > 0) {
+        if (!mobileMenuRef.current?.open) {
+          setHideOnScroll(true);
+        }
+      } else {
+        setHideOnScroll(false);
+      }
+
+      lastScrollYRef.current = currentY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [isGuideRoute]);
+
   const navLinkBase = "rounded-md px-3 py-2 font-medium transition";
   const navLinkInactive = "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-900 dark:hover:text-slate-100";
   const navLinkActive = "text-slate-900 underline decoration-sky-500 decoration-2 underline-offset-[10px] dark:text-slate-100 dark:decoration-sky-400";
 
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:border-slate-800 dark:bg-slate-950/85 dark:supports-[backdrop-filter]:bg-slate-950/70">
+    <header
+      className={`sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur transition-opacity duration-300 supports-[backdrop-filter]:bg-white/70 dark:border-slate-800 dark:bg-slate-950/85 dark:supports-[backdrop-filter]:bg-slate-950/70 ${
+        isGuideRoute && hideOnScroll ? "pointer-events-none opacity-0" : "opacity-100"
+      }`}
+    >
       <div className="mx-auto flex w-full max-w-6xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3 rounded-lg px-1 py-1 transition hover:bg-slate-100 dark:hover:bg-slate-900">
           <Image
@@ -124,7 +170,7 @@ export function SiteHeader() {
               );
             }
 
-            if (item.external) {
+            if ("external" in item && item.external) {
               return (
                 <a
                   key={item.label}
