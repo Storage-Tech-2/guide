@@ -5,7 +5,7 @@ export function SiteFooter() {
         <p>Built for beginners learning Minecraft storage tech.</p>
         <div className="flex items-center gap-4">
           <a href="https://discord.gg/storage-tech-2-1375556143186837695" target="_blank" rel="noreferrer" className="underline decoration-slate-300 underline-offset-2 hover:text-slate-900 dark:decoration-slate-700 dark:hover:text-slate-100">Join Discord</a>
-          <a href="https://storagecatalog.org/" target="_blank" rel="noreferrer" className="underline decoration-slate-300 underline-offset-2 hover:text-slate-900 dark:decoration-slate-700 dark:hover:text-slate-100">Main Site</a>
+          <a href="https://storagecatalog.org/" className="underline decoration-slate-300 underline-offset-2 hover:text-slate-900 dark:decoration-slate-700 dark:hover:text-slate-100">Main Site</a>
         </div>
       </div>
     </footer>

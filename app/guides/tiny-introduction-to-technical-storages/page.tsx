@@ -160,13 +160,13 @@ export default function TinyIntroductionGuidePage() {
         <ul className="mt-3 space-y-2 text-sm text-slate-800 dark:text-slate-200">
           <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
           Read the{" "}
-          <a href="https://storagecatalog.org/dictionary/" target="_blank" rel="noreferrer" className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">
+          <a href="https://storagecatalog.org/dictionary/" className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">
             dictionary
           </a>
           </li>
           <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
           Browse the{" "}
-          <a href="https://storagecatalog.org/archives/" target="_blank" rel="noreferrer" className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">
+          <a href="https://storagecatalog.org/archives/" className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400">
             archive
           </a>
           , test systems in a world, and take them apart to understand behavior.
@@ -203,8 +203,6 @@ export default function TinyIntroductionGuidePage() {
           <li className="rounded-lg border border-white bg-white/90 px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
             <a
               href="https://storagecatalog.org/item-layout-tool/"
-              target="_blank"
-              rel="noreferrer"
               className="font-semibold text-sky-800 underline underline-offset-2 dark:text-sky-400"
             >
               Item Layout Tool

@@ -9,8 +9,8 @@ import { getAllGuides } from "@/lib/guides";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/guides/", label: "Guides" },
-  { href: "https://storagecatalog.org/archives/", label: "Design Archive", external: true },
-  { href: "https://storagecatalog.org/dictionary/", label: "Dictionary", external: true },
+  { href: "https://storagecatalog.org/archives/", label: "Design Archive" },
+  { href: "https://storagecatalog.org/dictionary/", label: "Dictionary" },
 ] as const;
 
 function normalizePath(pathname: string) {

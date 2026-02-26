@@ -114,8 +114,6 @@ export default function HomePage() {
             <a
               key={item.label}
               href={item.href}
-              target="_blank"
-              rel="noreferrer"
               className="rounded-md border border-slate-300 bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-800 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
             >
               {item.label}
