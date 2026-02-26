@@ -22,7 +22,7 @@ const recommendedVideos = [
   { title: "NoisyMIS", href: "https://youtu.be/LDBwWtsDjxY", author: "RaPsCaLLioN1138" },
   {
     title: "Practical Redstone Reloaded",
-    href: "https://youtube.com/playlist?list=PLmEBf0WZp2qs8aoteq1SaMg2pm-IILr88&si=iwNa6Ksk2KLrltTD",
+    href: "https://youtube.com/playlist?list=PLmEBf0WZp2qs8aoteq1SaMg2pm-IILr88",
     author: "Emdy",
   },
   { title: "Item Alignment Guide", href: "https://youtu.be/bW4Z35NWKys", author: "NicoisLOST" },
@@ -34,7 +34,7 @@ const recommendedVideos = [
   },
   {
     title: "Storage Tech playlist",
-    href: "https://youtube.com/playlist?list=PL-sDbu5X9LQ6-aQw4BosI3KabdzH8wRPR&si=jaRQiIKEVkXGLAgx",
+    href: "https://youtube.com/playlist?list=PL-sDbu5X9LQ6-aQw4BosI3KabdzH8wRPR",
     author: "SamosTheSage",
   },
 ];
