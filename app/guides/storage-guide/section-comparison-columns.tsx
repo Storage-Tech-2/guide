@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type ResourceLink = {
   label: string;
@@ -41,6 +42,10 @@ type ModalState =
   | { kind: "gallery"; entryName: string; images: GalleryImage[] }
   | { kind: "howto"; entryName: string; steps: HowToStep[] };
 
+function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
 function ChevronLeftIcon() {
   return (
     <svg viewBox="0 0 20 20" fill="none" className="h-4 w-4" aria-hidden="true">
@@ -63,6 +68,9 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [modal, setModal] = useState<ModalState | null>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const getCardOffsets = (scroller: HTMLDivElement) =>
     Array.from(scroller.querySelectorAll<HTMLElement>("[data-storage-card='true']")).map((card) => card.offsetLeft);
@@ -127,7 +135,7 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setModal(null);
+        closeModal();
       }
     };
 
@@ -139,6 +147,44 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [modal]);
+
+  // Initialize modal from URL on mount
+  useEffect(() => {
+    const guideSlug = searchParams.get("guide");
+    const gallerySlug = searchParams.get("gallery");
+    if (guideSlug) {
+      const entry = entries.find((e) => slugify(e.name) === guideSlug);
+      if (entry?.howTo?.length) {
+        setModal({ kind: "howto", entryName: entry.name, steps: entry.howTo });
+      }
+    } else if (gallerySlug) {
+      const entry = entries.find((e) => slugify(e.name) === gallerySlug);
+      if (entry?.gallery?.length) {
+        setModal({ kind: "gallery", entryName: entry.name, images: entry.gallery });
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const updateUrl = (key: "guide" | "gallery" | null, slug: string | null) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("guide");
+    params.delete("gallery");
+    if (key && slug) params.set(key, slug);
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  };
+
+  const openModal = (state: ModalState) => {
+    setModal(state);
+    if (state.kind === "howto") updateUrl("guide", slugify(state.entryName));
+    else if (state.kind === "gallery") updateUrl("gallery", slugify(state.entryName));
+  };
+
+  const closeModal = () => {
+    setModal(null);
+    updateUrl(null, null);
+  };
 
   const scrollToNextItem = (direction: -1 | 1) => {
     const scroller = scrollerRef.current;
@@ -219,12 +265,7 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
                     <button
                       type="button"
                       onClick={() =>
-                        setModal({
-                          kind: "image",
-                          src: storageImages[entry.name],
-                          alt: `${entry.name} preview`,
-                          name: entry.name,
-                        })
+                        setModal({ kind: "image", src: storageImages[entry.name], alt: `${entry.name} preview`, name: entry.name })
                       }
                       className="block h-full w-full"
                       aria-label={`Open image viewer for ${entry.name}`}
@@ -277,7 +318,7 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
                   {entry.gallery && entry.gallery.length > 0 && (
                     <button
                       type="button"
-                      onClick={() => setModal({ kind: "gallery", entryName: entry.name, images: entry.gallery! })}
+                      onClick={() => openModal({ kind: "gallery", entryName: entry.name, images: entry.gallery! })}
                       className={secondaryButtonClass}
                     >
                       Open gallery
@@ -286,7 +327,7 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
                   {entry.howTo && entry.howTo.length > 0 && (
                     <button
                       type="button"
-                      onClick={() => setModal({ kind: "howto", entryName: entry.name, steps: entry.howTo! })}
+                      onClick={() => openModal({ kind: "howto", entryName: entry.name, steps: entry.howTo! })}
                       className={secondaryButtonClass}
                     >
                       Guide
@@ -318,7 +359,7 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
             type="button"
             aria-label="Close"
             className="absolute inset-0 bg-black/70"
-            onClick={() => setModal(null)}
+            onClick={() => closeModal()}
           />
           <div
             role="dialog"
@@ -354,7 +395,7 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
                 )}
                 <button
                   type="button"
-                  onClick={() => setModal(null)}
+                  onClick={() => closeModal()}
                   className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   Close

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { JsonLd } from "@/components/JsonLd";
 import SectionComparisonColumns from "./section-comparison-columns";
 
@@ -92,12 +93,12 @@ const sections: StorageSection[] = [
           { label: "UI", src: `${GH}/ca4626c7-d6fd-4a55-a4f7-79763c6d157f` },
         ],
         howTo: [
-          { caption: "Filter chests location", src: `${GH}/dde16924-c9ee-4d6e-8a62-30d025af8bea` },
-          { caption: "Default chest: 3 unstackables + 55 renamed items", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
-          { caption: "Add item: place 1 sample, remove 1 renamed item", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
-          { caption: "16-stackable: remove 4 renamed items per item added", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
-          { caption: "Barrel filter (same procedure as chests)", src: `${GH}/4b0438da-6e27-4fe9-838b-e8201537695c` },
-          { caption: "Hopper cart: 4 non-stackable items, last slot empty", src: `${GH}/710f545b-7864-4250-9e18-24cc97c2e83d` },
+          { caption: "The filters (also called whitelisters) of this system are these chests. Depending on the version chosen, barrels are used in the same way:", src: `${GH}/dde16924-c9ee-4d6e-8a62-30d025af8bea` },
+          { caption: "by default, the chest has three unstackables/full stacks and 55 64-stackable renamed items (which must never be put in the input):", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
+          { caption: "To add an item, place one sample in the chest and remove one of the renamed items:", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
+          { caption: "To add items that only stack up to 16, remove 4 renamed items for each 16-stackable added to the chest:", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
+          { caption: "The procedure for barrels is the same:", src: `${GH}/4b0438da-6e27-4fe9-838b-e8201537695c` },
+          { caption: "The hopper cart needs to be filled with 4 non stackable items, leaving the last slot empty:", src: `${GH}/710f545b-7864-4250-9e18-24cc97c2e83d` },
         ],
       },
       {
@@ -127,14 +128,14 @@ const sections: StorageSection[] = [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS007-Borb-MIS/" },
         ],
         howTo: [
-          { caption: "Filter chests on the back of the building", src: `${GH}/dd1694fc-5528-4292-9b45-1d5c689f6c8c` },
-          { caption: "Default chest: 3 unstackables + 55 renamed items", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
-          { caption: "Add item: place 1 sample, remove 1 renamed item", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
-          { caption: "16-stackable: remove 4 renamed items per item added", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
-          { caption: "Arrangement example 1", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
-          { caption: "Arrangement example 2", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
-          { caption: "Arrangement example 3", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
-          { caption: "Hopper cart: 0-19-1-1-1 config (different items from whitelisters)", src: `${GH}/7a42d028-5fe2-4abc-85bd-8b9512bf2fe2` },
+          { caption: "The filters (also called whitelisters) of this system are these chests on the back of the building:", src: `${GH}/dd1694fc-5528-4292-9b45-1d5c689f6c8c` },
+          { caption: "by default, the chest has three unstackables/full stacks and 55 64-stackable renamed items (which must never be put in the input):", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
+          { caption: "To add an item, place one sample in the chest and remove one of the renamed items:", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
+          { caption: "To add items that only stack up to 16, remove 4 renamed items for each 16-stackable added to the chest:", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
+          { caption: "The hopper cart needs to be filled with 0-19-1-1-1 64-stackable renamed items, different from the ones used in the whitelisters:", src: `${GH}/7a42d028-5fe2-4abc-85bd-8b9512bf2fe2` },
         ],
       },
       {
@@ -150,13 +151,13 @@ const sections: StorageSection[] = [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS003-Simple-Cart-based-MIS-Storage-Scorpio-MIS/" },
         ],
         howTo: [
-          { caption: "Filter chests location", src: `${GH}/51ec84a4-23dc-4d62-83dc-e7d0350cc6af` },
-          { caption: "Default chest: 3 unstackables + 55 renamed items", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
-          { caption: "Add item: place 1 sample, remove 1 renamed item", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
-          { caption: "16-stackable: remove 4 renamed items per item added", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
-          { caption: "Arrangement example 1", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
-          { caption: "Arrangement example 2", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
-          { caption: "Arrangement example 3", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
+          { caption: "The filters (also called whitelisters) of this system are these chests:", src: `${GH}/51ec84a4-23dc-4d62-83dc-e7d0350cc6af` },
+          { caption: "by default, the chest has three unstackables/full stacks and 55 64-stackable renamed items (which must never be put in the input):", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
+          { caption: "To add an item, place one sample in the chest and remove one of the renamed items:", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
+          { caption: "To add items that only stack up to 16, remove 4 renamed items for each 16-stackable added to the chest:", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
         ],
       },
     ],
@@ -183,10 +184,10 @@ const sections: StorageSection[] = [
           { label: "UI", src: `${GH}/57a3bc3b-e41a-43fe-835b-35c875441d34` },
         ],
         howTo: [
-          { caption: "MIS filter chests on top", src: `${GH}/e7efb869-aea2-493f-ac94-dfd224ed0f5a` },
-          { caption: "Add item to MIS: replace 1 blocker with 2 samples", src: `${GH}/f50f30c8-8d37-42da-86b3-8cb1b26c518b` },
-          { caption: "Hybrid loader filters on the sides", src: `${GH}/30867425-b457-4ee7-a377-939b2a56f1ed` },
-          { caption: "Filter hopper next to ice: 1 sample in first slot", src: `${GH}/bf0f3514-b003-4946-a84a-272d7445cec3` },
+          { caption: "The filters of the multi item sorter are these chests on top:", src: `${GH}/e7efb869-aea2-493f-ac94-dfd224ed0f5a` },
+          { caption: "by default, the MIS chests are completely filled with either renamed blockers or unstackable items. To assign an item to the slice, replace one of the blockers with two samples of the item:", src: `${GH}/f50f30c8-8d37-42da-86b3-8cb1b26c518b` },
+          { caption: "The filters of the hybrid loaders are normal SS2 filters on the sides of the building:", src: `${GH}/30867425-b457-4ee7-a377-939b2a56f1ed` },
+          { caption: "The hopper next to ice must be set as shown, with at least a sample of the item in the first slot. The iron nuggets are renamed items.", src: `${GH}/bf0f3514-b003-4946-a84a-272d7445cec3` },
         ],
       },
       {
@@ -207,9 +208,9 @@ const sections: StorageSection[] = [
           { label: "UI 2", src: `${GH}/2f1349ad-60a7-4052-ad11-7308e24d643b` },
         ],
         howTo: [
-          { caption: "MIS and box loader filters on top of the building", src: `${GH}/54a9616f-06f3-4217-91c5-1b97379ec0a2` },
-          { caption: "Add item to MIS: replace 1 blocker with 2 samples", src: `${GH}/f50f30c8-8d37-42da-86b3-8cb1b26c518b` },
-          { caption: "Box loader filter hopper: 1 sample in first slot, cacti are renamed items", src: `${GH}/90239967-5829-4bde-960b-49de5263598c` },
+          { caption: "The filters of the multi item sorter (double chests) and the ones of the box loaders (hoppers next to ice) are on top of the building:", src: `${GH}/54a9616f-06f3-4217-91c5-1b97379ec0a2` },
+          { caption: "by default, the MIS chests are completely filled with either renamed blockers or unstackable items. To assign an item to the slice, replace one of the blockers with two samples of the item:", src: `${GH}/f50f30c8-8d37-42da-86b3-8cb1b26c518b` },
+          { caption: "The filters of the box loaders are normal SS3 filters. The filter hopper must be set as shown, with at least a sample of the item in the first slot. The cacti are renamed items. Over time, up to 41 items will fill the first slot.", src: `${GH}/90239967-5829-4bde-960b-49de5263598c` },
         ],
       },
       {
@@ -230,18 +231,18 @@ const sections: StorageSection[] = [
           { label: "UI 2", src: `${GH}/f449eedd-b9ee-45a7-8b93-ffdc9a777d8d` },
         ],
         howTo: [
-          { caption: "MIS filter chests under the floor (never touch while active)", src: `${GH}/9841f62e-de3c-405f-9811-ebd5a7b152e1` },
-          { caption: "Default chest: 3 unstackables + 55 renamed items", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
-          { caption: "Add item: place 1 sample, remove 1 renamed item", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
-          { caption: "16-stackable: remove 4 renamed items per item added", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
-          { caption: "Arrangement example 1", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
-          { caption: "Arrangement example 2", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
-          { caption: "Arrangement example 3", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
-          { caption: "Bulk whitelister chest at end of the hall", src: `${GH}/5fde734a-8362-4c74-a53f-97b53e60a241` },
-          { caption: "Box loaders: 2 filters per item, assign adjacent hoppers to same item", src: `${GH}/2ec5eee4-f4af-43df-a0d5-0c5ea44ae1ad` },
-          { caption: "Box loader hoppers: 1-18-1-1-1 or similar, iron nuggets are renamed items", src: `${GH}/dce2e04d-ccec-4542-ab64-9c9f31dd954e` },
-          { caption: "Box sorter filter hoppers location", src: `${GH}/3bbee34a-10cc-4c9f-be7c-58aaa5dc65a1` },
-          { caption: "Box sorter hopper: 1 sample + 4 blockers (use shulker boxes)", src: `${GH}/6a699d23-6c30-48de-aeef-a2d23bab971d` },
+          { caption: "The filters (also called whitelisters) of the MIS are the bottom chests under the floor shown here. NEVER touch the content of those chests when the system is currently active.", src: `${GH}/9841f62e-de3c-405f-9811-ebd5a7b152e1` },
+          { caption: "by default, the chest has three unstackables/full stacks and 55 64-stackable renamed items (which must never be put in the input):", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
+          { caption: "To add an item, place one sample in the chest and remove one of the renamed items:", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
+          { caption: "To add items that only stack up to 16, remove 4 renamed items for each 16-stackable added to the chest:", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
+          { caption: "The renamed items and the full stacks/unstackable items can be placed in different ways, there's no difference as long as the number is correct:", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
+          { caption: "One whitelister at the end of the hall controls which items are assigned to the box loaders for the bulk section:", src: `${GH}/5fde734a-8362-4c74-a53f-97b53e60a241` },
+          { caption: "To assign an item to bulk, you have to assign it three times: Bulk whitelister chests, box loaders, and box sorters. The box loaders have 2 filters for each item:", src: `${GH}/2ec5eee4-f4af-43df-a0d5-0c5ea44ae1ad` },
+          { caption: "The filtering hoppers can be set as shown, with iron nuggets being renamed items. 1-18-1-1-1, 2-17-1-1-1 and 3-16-1-1-1 are all possible configurations. Remember to assign 2 filters next to each other to the same item, as shown in the litematic file.", src: `${GH}/dce2e04d-ccec-4542-ab64-9c9f31dd954e` },
+          { caption: "The filters of the box sorters are the hoppers visible here:", src: `${GH}/3bbee34a-10cc-4c9f-be7c-58aaa5dc65a1` },
+          { caption: "Each hopper must be filled with 1 sample of the item you want to sort into the corresponding slice and 4 blockers. Shulker boxes are preferred because they can't be inserted inside shulker boxes under any circumstance, making the filter more resistant. For unassigned slices, block all the slots.", src: `${GH}/6a699d23-6c30-48de-aeef-a2d23bab971d` },
         ],
       },
       {
@@ -451,7 +452,9 @@ export default function StorageGuidePage() {
               <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">{section.title}</h2>
               <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">{section.description}</p>
             </div>
-            <SectionComparisonColumns entries={section.entries} storageImages={storageImages} />
+            <Suspense>
+              <SectionComparisonColumns entries={section.entries} storageImages={storageImages} />
+            </Suspense>
           </section>
         ))}
       </div>
