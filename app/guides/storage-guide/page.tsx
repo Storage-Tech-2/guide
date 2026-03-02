@@ -24,6 +24,16 @@ type ResourceLink = {
   href: string;
 };
 
+type GalleryImage = {
+  label: string;
+  src: string;
+};
+
+type HowToStep = {
+  caption: string;
+  src: string;
+};
+
 type StorageEntry = {
   name: string;
   version: string;
@@ -34,6 +44,8 @@ type StorageEntry = {
   extras: string;
   issues: string;
   links: ResourceLink[];
+  gallery?: GalleryImage[];
+  howTo?: HowToStep[];
 };
 
 type StorageSection = {
@@ -54,6 +66,8 @@ const notes = [
   "If something appears wrong, test in a world download first and then ask specific questions with screenshots.",
 ];
 
+const GH = "https://github.com/user-attachments/assets";
+
 const sections: StorageSection[] = [
   {
     id: "mis",
@@ -72,6 +86,18 @@ const sections: StorageSection[] = [
         issues: "No known major issues in guide notes.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS001-Compact-Categorizer/" },
+        ],
+        gallery: [
+          { label: "Input", src: `${GH}/d134cf1b-f766-479d-a208-e430055e6b0b` },
+          { label: "UI", src: `${GH}/ca4626c7-d6fd-4a55-a4f7-79763c6d157f` },
+        ],
+        howTo: [
+          { caption: "Filter chests location", src: `${GH}/dde16924-c9ee-4d6e-8a62-30d025af8bea` },
+          { caption: "Default chest: 3 unstackables + 55 renamed items", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
+          { caption: "Add item: place 1 sample, remove 1 renamed item", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
+          { caption: "16-stackable: remove 4 renamed items per item added", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
+          { caption: "Barrel filter (same procedure as chests)", src: `${GH}/4b0438da-6e27-4fe9-838b-e8201537695c` },
+          { caption: "Hopper cart: 4 non-stackable items, last slot empty", src: `${GH}/710f545b-7864-4250-9e18-24cc97c2e83d` },
         ],
       },
       {
@@ -100,6 +126,16 @@ const sections: StorageSection[] = [
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS007-Borb-MIS/" },
         ],
+        howTo: [
+          { caption: "Filter chests on the back of the building", src: `${GH}/dd1694fc-5528-4292-9b45-1d5c689f6c8c` },
+          { caption: "Default chest: 3 unstackables + 55 renamed items", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
+          { caption: "Add item: place 1 sample, remove 1 renamed item", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
+          { caption: "16-stackable: remove 4 renamed items per item added", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
+          { caption: "Arrangement example 1", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
+          { caption: "Arrangement example 2", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
+          { caption: "Arrangement example 3", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
+          { caption: "Hopper cart: 0-19-1-1-1 config (different items from whitelisters)", src: `${GH}/7a42d028-5fe2-4abc-85bd-8b9512bf2fe2` },
+        ],
       },
       {
         name: "Scorpio MIS",
@@ -112,6 +148,15 @@ const sections: StorageSection[] = [
         issues: "Guide notes mention breakage during testing in one report.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS003-Simple-Cart-based-MIS-Storage-Scorpio-MIS/" },
+        ],
+        howTo: [
+          { caption: "Filter chests location", src: `${GH}/51ec84a4-23dc-4d62-83dc-e7d0350cc6af` },
+          { caption: "Default chest: 3 unstackables + 55 renamed items", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
+          { caption: "Add item: place 1 sample, remove 1 renamed item", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
+          { caption: "16-stackable: remove 4 renamed items per item added", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
+          { caption: "Arrangement example 1", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
+          { caption: "Arrangement example 2", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
+          { caption: "Arrangement example 3", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
         ],
       },
     ],
@@ -133,6 +178,16 @@ const sections: StorageSection[] = [
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS005-J-MIS-Jay-s-Moony-Item-Sorter/" },
         ],
+        gallery: [
+          { label: "Input", src: `${GH}/51f46182-ba7f-42e4-af54-ced4d086c3eb` },
+          { label: "UI", src: `${GH}/57a3bc3b-e41a-43fe-835b-35c875441d34` },
+        ],
+        howTo: [
+          { caption: "MIS filter chests on top", src: `${GH}/e7efb869-aea2-493f-ac94-dfd224ed0f5a` },
+          { caption: "Add item to MIS: replace 1 blocker with 2 samples", src: `${GH}/f50f30c8-8d37-42da-86b3-8cb1b26c518b` },
+          { caption: "Hybrid loader filters on the sides", src: `${GH}/30867425-b457-4ee7-a377-939b2a56f1ed` },
+          { caption: "Filter hopper next to ice: 1 sample in first slot", src: `${GH}/bf0f3514-b003-4946-a84a-272d7445cec3` },
+        ],
       },
       {
         name: "YAMIS",
@@ -145,6 +200,16 @@ const sections: StorageSection[] = [
         issues: "Noisy/laggier on low-end hardware; avoid spamming box-calling.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS002-YAMIS-Multi-Item-Storage-System/" },
+        ],
+        gallery: [
+          { label: "Input", src: `${GH}/4a00c8b1-1f5f-4d61-8a4a-614318efd82e` },
+          { label: "UI", src: `${GH}/2cfb7feb-2dc8-4605-bad3-1882feafefdd` },
+          { label: "UI 2", src: `${GH}/2f1349ad-60a7-4052-ad11-7308e24d643b` },
+        ],
+        howTo: [
+          { caption: "MIS and box loader filters on top of the building", src: `${GH}/54a9616f-06f3-4217-91c5-1b97379ec0a2` },
+          { caption: "Add item to MIS: replace 1 blocker with 2 samples", src: `${GH}/f50f30c8-8d37-42da-86b3-8cb1b26c518b` },
+          { caption: "Box loader filter hopper: 1 sample in first slot, cacti are renamed items", src: `${GH}/90239967-5829-4bde-960b-49de5263598c` },
         ],
       },
       {
@@ -159,6 +224,25 @@ const sections: StorageSection[] = [
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS010-XianyuMIS-V2/" },
         ],
+        gallery: [
+          { label: "Input", src: `${GH}/a14b7092-6213-49ef-876f-6df145f04889` },
+          { label: "UI", src: `${GH}/9ed9cb46-a39d-4322-af50-b13aa8411f8e` },
+          { label: "UI 2", src: `${GH}/f449eedd-b9ee-45a7-8b93-ffdc9a777d8d` },
+        ],
+        howTo: [
+          { caption: "MIS filter chests under the floor (never touch while active)", src: `${GH}/9841f62e-de3c-405f-9811-ebd5a7b152e1` },
+          { caption: "Default chest: 3 unstackables + 55 renamed items", src: `${GH}/c369ee97-7be0-4769-a53e-f10aef737981` },
+          { caption: "Add item: place 1 sample, remove 1 renamed item", src: `${GH}/e5a156de-d5fd-433f-ba6d-24107f665231` },
+          { caption: "16-stackable: remove 4 renamed items per item added", src: `${GH}/dd4eefe8-a2ae-48e0-a5c8-ef5147a37dd3` },
+          { caption: "Arrangement example 1", src: `${GH}/55c11e53-8531-4646-8a02-fe996d84c8a1` },
+          { caption: "Arrangement example 2", src: `${GH}/9ff76d98-cbe2-4769-b0af-62d27b6a5c2c` },
+          { caption: "Arrangement example 3", src: `${GH}/de65f669-e044-4f38-9c5d-6c3cd6052f98` },
+          { caption: "Bulk whitelister chest at end of the hall", src: `${GH}/5fde734a-8362-4c74-a53f-97b53e60a241` },
+          { caption: "Box loaders: 2 filters per item, assign adjacent hoppers to same item", src: `${GH}/2ec5eee4-f4af-43df-a0d5-0c5ea44ae1ad` },
+          { caption: "Box loader hoppers: 1-18-1-1-1 or similar, iron nuggets are renamed items", src: `${GH}/dce2e04d-ccec-4542-ab64-9c9f31dd954e` },
+          { caption: "Box sorter filter hoppers location", src: `${GH}/3bbee34a-10cc-4c9f-be7c-58aaa5dc65a1` },
+          { caption: "Box sorter hopper: 1 sample + 4 blockers (use shulker boxes)", src: `${GH}/6a699d23-6c30-48de-aeef-a2d23bab971d` },
+        ],
       },
       {
         name: "CartMIS v3",
@@ -171,6 +255,12 @@ const sections: StorageSection[] = [
         issues: "Some rail placements are tricky; keep overflow from filling.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS008-Complete-Cart-Based-Storage/" },
+        ],
+        gallery: [
+          { label: "Input", src: `${GH}/53be6ab7-8310-4afa-a050-e94f109bd295` },
+          { label: "UI", src: `${GH}/79de7652-4d39-453c-a90d-805ac9fdb6ef` },
+          { label: "UI 2", src: `${GH}/6639545b-81b2-4ecc-b4e1-c4fd0d2ce245` },
+          { label: "UI 3", src: `${GH}/f1d701dc-7b2b-4026-aed4-91d1c3d9f0ff` },
         ],
       },
     ],
@@ -192,6 +282,14 @@ const sections: StorageSection[] = [
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/LS003-luckeY-Main-Storage/" },
         ],
+        gallery: [
+          { label: "Input", src: `${GH}/042938de-9080-4eaa-be31-e9d8523fb860` },
+          { label: "UI", src: `${GH}/34869a61-bfe0-4857-921e-08c63c01e3ab` },
+          { label: "UI 2", src: `${GH}/0bf55606-e6fc-4d42-ba05-f7097c2ec26b` },
+          { label: "UI 3", src: `${GH}/2894a32b-0ac4-4604-8e7b-1bbed215d061` },
+          { label: "UI 4", src: `${GH}/998e7276-3627-465b-8ffa-03b1d944a501` },
+          { label: "UI 5", src: `${GH}/ff78d921-2bc7-407d-ad26-4f3ecf5bbaf2` },
+        ],
       },
       {
         name: "Yams v2",
@@ -205,6 +303,14 @@ const sections: StorageSection[] = [
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/LS006-Yams-v2-3/" },
         ],
+        gallery: [
+          { label: "Input", src: `${GH}/d260bd2c-69ed-4735-ba3d-821877fa6b6d` },
+          { label: "UI", src: `${GH}/6ce06784-dfc3-488a-a32b-2a343a258819` },
+          { label: "UI 2", src: `${GH}/021da9f6-f4e7-498a-b8e2-da87d18303b0` },
+          { label: "UI 3", src: `${GH}/863b4f69-b94d-44d4-b6d6-0136a0876d3d` },
+          { label: "UI 4", src: `${GH}/f0b120a2-91e3-4fc0-bbd5-7b159e783303` },
+          { label: "UI 5", src: `${GH}/597a9009-617e-43a7-bcf4-5b02c62c5525` },
+        ],
       },
       {
         name: "Krebs' Main Storage System",
@@ -217,6 +323,13 @@ const sections: StorageSection[] = [
         issues: "No known major issues in guide notes; some components are not latest-generation designs.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/LS005-Krebs-Main-Storage-System/" },
+        ],
+        gallery: [
+          { label: "Input", src: `${GH}/fb05add9-3e1a-4447-986a-4bfaf3d70b76` },
+          { label: "UI", src: `${GH}/d9eae6e1-9163-4785-a2e5-d10e3cbb6294` },
+          { label: "UI 2", src: `${GH}/1c35cd44-f6b0-4f6e-8b1a-1ab3a2c15f89` },
+          { label: "UI 3", src: `${GH}/b4c621c9-4b99-4165-be89-a957c62a0b0e` },
+          { label: "UI 4", src: `${GH}/53f6ff0c-c63b-439d-a426-f9e4d2b82c78` },
         ],
       },
     ],
@@ -238,6 +351,16 @@ const sections: StorageSection[] = [
         links: [
           { label: "Webpage", href: "https://soontech.org/browser/archives/ES003-Scicraft-Hybrid-Main-Storage/" },
         ],
+        gallery: [
+          { label: "Input", src: `${GH}/b184baf8-2bcc-4f51-acf9-20857a192130` },
+          { label: "UI", src: `${GH}/390c4ee8-7307-4ca0-bbea-4da272874b47` },
+          { label: "UI 2", src: `${GH}/1d29b033-86e0-4cce-b505-30a24f85b03c` },
+          { label: "UI 3", src: `${GH}/9c48c0fe-2cbe-4b99-afdf-5feb685673a3` },
+          { label: "UI 4", src: `${GH}/6b3db113-80da-4756-986e-12a2710203f1` },
+          { label: "UI 5", src: `${GH}/c232b319-590a-4ef3-bcc0-20ffe0295c51` },
+          { label: "UI 6", src: `${GH}/99567d62-3c99-488e-87df-59d169563f2e` },
+          { label: "UI 7", src: `${GH}/885f4bb0-14fa-43cd-b0a1-c5597a6580ac` },
+        ],
       },
     ],
   },
@@ -247,12 +370,10 @@ const storageImages: Record<string, string> = {
   "Compact Categorizer": "/images/storage-guide/fc2f8deb-3c5a-49f1-9d43-e400af767e9a.png",
   "16gt Parallelized Cart MIS Storage": "/images/storage-guide/16gtmis.png",
   "B-MIS": "/images/storage-guide/e577d7af-4f02-4934-8dfc-e0bb319a8a74.png",
-  "Simple multi-item sorter": "/images/storage-guide/e2f4bc55-dcbe-4e0f-9887-5a5a8c41dadc.png",
   "Scorpio MIS": "/images/storage-guide/519b73f2-1e9c-4d21-8dad-bbbae61d22d6.png",
   "J-MIS v3": "/images/storage-guide/fc28b428-ec56-4ca0-af98-c70e1fe3995c.png",
   "YAMIS": "/images/storage-guide/48b65311-e3a6-47fa-9971-297e1a5ba557.png",
   "XianyuMIS v2": "/images/storage-guide/1ff9fdd5-3fc5-4b64-bc43-5d0ecd869337.png",
-  "G-MIS v2.1": "/images/storage-guide/330f8a64-eefb-4f6b-925e-311145fe425f.png",
   "CartMIS v3": "/images/storage-guide/9c18d345-7d06-4689-89a7-d2feb00a9cdd.png",
   "luckeY Main Storage": "/images/storage-guide/9d5565e0-9793-41e4-abd4-8ecbc673e282.png",
   "Yams v2": "/images/storage-guide/7edc565a-d644-48e0-a5e2-b9ef6008bb63.png",

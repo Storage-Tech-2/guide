@@ -7,6 +7,16 @@ type ResourceLink = {
   href: string;
 };
 
+type GalleryImage = {
+  label: string;
+  src: string;
+};
+
+type HowToStep = {
+  caption: string;
+  src: string;
+};
+
 type StorageEntry = {
   name: string;
   version: string;
@@ -17,12 +27,19 @@ type StorageEntry = {
   extras: string;
   issues: string;
   links: ResourceLink[];
+  gallery?: GalleryImage[];
+  howTo?: HowToStep[];
 };
 
 type SectionComparisonColumnsProps = {
   entries: StorageEntry[];
   storageImages: Record<string, string>;
 };
+
+type ModalState =
+  | { kind: "image"; src: string; alt: string; name: string }
+  | { kind: "gallery"; entryName: string; images: GalleryImage[] }
+  | { kind: "howto"; entryName: string; steps: HowToStep[] };
 
 function ChevronLeftIcon() {
   return (
@@ -45,7 +62,7 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const [viewerImage, setViewerImage] = useState<{ src: string; alt: string; name: string } | null>(null);
+  const [modal, setModal] = useState<ModalState | null>(null);
 
   const getCardOffsets = (scroller: HTMLDivElement) =>
     Array.from(scroller.querySelectorAll<HTMLElement>("[data-storage-card='true']")).map((card) => card.offsetLeft);
@@ -104,13 +121,13 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
   }, [entries.length, updateScrollState]);
 
   useEffect(() => {
-    if (!viewerImage) {
+    if (!modal) {
       return;
     }
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setViewerImage(null);
+        setModal(null);
       }
     };
 
@@ -121,7 +138,7 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [viewerImage]);
+  }, [modal]);
 
   const scrollToNextItem = (direction: -1 | 1) => {
     const scroller = scrollerRef.current;
@@ -138,6 +155,9 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
     setActiveIndex(targetIndex);
     scroller.scrollTo({ left: offsets[targetIndex], behavior: "smooth" });
   };
+
+  const secondaryButtonClass =
+    "rounded-md border border-slate-300 bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700";
 
   return (
     <div className="relative">
@@ -164,13 +184,13 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
       <div className="relative">
         <div
           aria-hidden="true"
-          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-slate-100 to-transparent dark:from-slate-950 ${
+          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-linear-to-r from-slate-100 to-transparent dark:from-slate-950 ${
             canScrollLeft ? "opacity-100" : "opacity-0"
           }`}
         />
         <div
           aria-hidden="true"
-          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-gradient-to-l from-slate-100 to-transparent dark:from-slate-950 ${
+          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-linear-to-l from-slate-100 to-transparent dark:from-slate-950 ${
             canScrollRight ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -199,7 +219,8 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
                     <button
                       type="button"
                       onClick={() =>
-                        setViewerImage({
+                        setModal({
+                          kind: "image",
                           src: storageImages[entry.name],
                           alt: `${entry.name} preview`,
                           name: entry.name,
@@ -253,6 +274,24 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
 
               <div className="row-start-8 p-4">
                 <div className="flex flex-wrap gap-2">
+                  {entry.gallery && entry.gallery.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setModal({ kind: "gallery", entryName: entry.name, images: entry.gallery! })}
+                      className={secondaryButtonClass}
+                    >
+                      Open gallery
+                    </button>
+                  )}
+                  {entry.howTo && entry.howTo.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setModal({ kind: "howto", entryName: entry.name, steps: entry.howTo! })}
+                      className={secondaryButtonClass}
+                    >
+                      Guide
+                    </button>
+                  )}
                   {entry.links.map((link) => (
                     <a
                       key={link.href}
@@ -273,43 +312,86 @@ export default function SectionComparisonColumns({ entries, storageImages }: Sec
         </div>
       </div>
 
-      {viewerImage ? (
+      {modal ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8">
           <button
             type="button"
-            aria-label="Close image viewer"
+            aria-label="Close"
             className="absolute inset-0 bg-black/70"
-            onClick={() => setViewerImage(null)}
+            onClick={() => setModal(null)}
           />
           <div
             role="dialog"
             aria-modal="true"
-            aria-label={`${viewerImage.name} image viewer`}
-            className="relative z-10 w-full max-w-6xl rounded-2xl border border-slate-300 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+            aria-label={
+              modal.kind === "image"
+                ? `${modal.name} image viewer`
+                : modal.kind === "gallery"
+                ? `${modal.entryName} gallery`
+                : `${modal.entryName} filter guide`
+            }
+            className="relative z-10 flex w-full max-w-3xl flex-col rounded-2xl border border-slate-300 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+            style={{ maxHeight: "90vh" }}
           >
-            <div className="flex items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-slate-700">
-              <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{viewerImage.name}</p>
+            <div className="flex shrink-0 items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-slate-700">
+              <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                {modal.kind === "image"
+                  ? modal.name
+                  : modal.kind === "gallery"
+                  ? `${modal.entryName} — Gallery`
+                  : `${modal.entryName} — How to set filters`}
+              </p>
               <div className="flex items-center gap-2">
-                <a
-                  href={viewerImage.src}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
-                >
-                  Open in new tab
-                </a>
+                {modal.kind === "image" && (
+                  <a
+                    href={modal.src}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
+                  >
+                    Open in new tab
+                  </a>
+                )}
                 <button
                   type="button"
-                  onClick={() => setViewerImage(null)}
+                  onClick={() => setModal(null)}
                   className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   Close
                 </button>
               </div>
             </div>
-            <div className="max-h-[82vh] overflow-auto p-3 sm:p-5">
-              <img src={viewerImage.src} alt={viewerImage.alt} className="mx-auto h-auto max-h-[74vh] w-auto max-w-full object-contain" />
-            </div>
+
+            {modal.kind === "image" ? (
+              <div className="overflow-auto p-3 sm:p-5">
+                <img src={modal.src} alt={modal.alt} className="mx-auto h-auto w-auto max-w-full object-contain" />
+              </div>
+            ) : modal.kind === "gallery" ? (
+              <div className="overflow-y-auto p-4">
+                <div className="space-y-4">
+                  {modal.images.map((img) => (
+                    <div key={img.src}>
+                      <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">{img.label}</p>
+                      <img src={img.src} alt={img.label} className="w-full rounded-lg object-contain" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="overflow-y-auto p-4">
+                <div className="space-y-6">
+                  {modal.steps.map((step, i) => (
+                    <div key={step.src}>
+                      <p className="mb-2 text-sm text-slate-700 dark:text-slate-300">
+                        <span className="font-bold text-slate-900 dark:text-slate-100">Step {i + 1}. </span>
+                        {step.caption}
+                      </p>
+                      <img src={step.src} alt={step.caption} className="w-full rounded-lg object-contain" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ) : null}
