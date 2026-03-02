@@ -72,7 +72,20 @@ const sections: StorageSection[] = [
         issues: "No known major issues in guide notes.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS001-Compact-Categorizer/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/749137424684285992/1151464188787576853" },
+        ],
+      },
+      {
+        name: "16gt Parallelized Cart MIS Storage",
+        version: "1.21.10+",
+        creators: "Wes",
+        sorts:
+          "Stackable items + shulker unload + multi-item shulker sorting. 1-wide slices with up to 50 item types.",
+        speed: "Up to ~32 hopper speed (~288000 items/hour).",
+        size: "19x14x43 (11438 blocks).",
+        extras: "Chunkloader not included.",
+        issues: "Breaks in older 1.21.x subversions because of bubble column changes.",
+        links: [
+          { label: "Webpage", href: "https://storagecatalog.org/archives/MIS012-16gt-Parallelized-Cart-MIS-Storage/" },
         ],
       },
       {
@@ -86,20 +99,6 @@ const sections: StorageSection[] = [
         issues: "Clear overflow before full; no unload-proof guarantees.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS007-Borb-MIS/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/1142131464893370429/1145111266260684971" },
-        ],
-      },
-      {
-        name: "Simple multi-item sorter",
-        version: "1.16+",
-        creators: "UnnervingS",
-        sorts: "Stackable items + shulker unload. 2-wide categories up to 54 item types.",
-        speed: "~hopper speed (~9000 items/hour).",
-        size: "34x32x31 (4639 blocks).",
-        extras: "Chunkloader included.",
-        issues: "Older MIS base; clear unsorted/overflow before full.",
-        links: [
-         { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/985217000232087593/988473035294117888" },
         ],
       },
       {
@@ -113,7 +112,6 @@ const sections: StorageSection[] = [
         issues: "Guide notes mention breakage during testing in one report.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS003-Simple-Cart-based-MIS-Storage-Scorpio-MIS/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/749137424684285992/1379029443733094513" },
         ],
       },
     ],
@@ -134,7 +132,6 @@ const sections: StorageSection[] = [
         issues: "No known major issues in guide notes.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS005-J-MIS-Jay-s-Moony-Item-Sorter/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/749137424684285992/1182780067164717197" },
         ],
       },
       {
@@ -148,7 +145,6 @@ const sections: StorageSection[] = [
         issues: "Noisy/laggier on low-end hardware; avoid spamming box-calling.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS002-YAMIS-Multi-Item-Storage-System/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/749137424684285992/1361920281634930718" },
         ],
       },
       {
@@ -162,7 +158,6 @@ const sections: StorageSection[] = [
         issues: "Keep overflow managed; do not edit MIS filters while active.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS010-XianyuMIS-V2/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/833152072618606652/1465491404540088372" },
         ],
       },
       {
@@ -174,9 +169,7 @@ const sections: StorageSection[] = [
         size: "57x86x84 decorated (34515 blocks).",
         extras: "Chunkloaders and safety features.",
         issues: "Guide notes flag unstackable reliability and potential lag in heavy MIS usage.",
-        links: [
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/833152072618606652/1080307180076544020" },
-        ],
+        links: [],
       },
       {
         name: "CartMIS v3",
@@ -189,7 +182,6 @@ const sections: StorageSection[] = [
         issues: "Some rail placements are tricky; keep overflow from filling.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/MIS008-Complete-Cart-Based-Storage/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/749137424684285992/1251974389088391259" },
         ],
       },
     ],
@@ -210,7 +202,6 @@ const sections: StorageSection[] = [
         issues: "No known major issues in guide notes; build indicators carefully.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/LS003-luckeY-Main-Storage/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/1407307639552999424/1466124381301243914" },
         ],
       },
       {
@@ -224,7 +215,6 @@ const sections: StorageSection[] = [
         issues: "Mostly functional; avoid spamming mini-bulk box-calling while active.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/LS006-Yams-v2-3/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/749137424684285992/1262854684037611600" },
         ],
       },
       {
@@ -238,7 +228,6 @@ const sections: StorageSection[] = [
         issues: "No known major issues in guide notes; some components are not latest-generation designs.",
         links: [
           { label: "Webpage", href: "https://storagecatalog.org/archives/LS005-Krebs-Main-Storage-System/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/833152072618606652/1083907230023295066" },
         ],
       },
     ],
@@ -259,7 +248,6 @@ const sections: StorageSection[] = [
         issues: "No known major issues in guide notes.",
         links: [
           { label: "Webpage", href: "https://soontech.org/browser/archives/ES003-Scicraft-Hybrid-Main-Storage/" },
-          { label: "Discord Post", href: "https://discord.com/channels/748542142347083868/1189010750606426132/1189012529284919296" },
         ],
       },
     ],
@@ -268,6 +256,7 @@ const sections: StorageSection[] = [
 
 const storageImages: Record<string, string> = {
   "Compact Categorizer": "/images/storage-guide/fc2f8deb-3c5a-49f1-9d43-e400af767e9a.png",
+  "16gt Parallelized Cart MIS Storage": "/images/storage-guide/16gtmis.png",
   "B-MIS": "/images/storage-guide/e577d7af-4f02-4934-8dfc-e0bb319a8a74.png",
   "Simple multi-item sorter": "/images/storage-guide/e2f4bc55-dcbe-4e0f-9887-5a5a8c41dadc.png",
   "Scorpio MIS": "/images/storage-guide/519b73f2-1e9c-4d21-8dad-bbbae61d22d6.png",
