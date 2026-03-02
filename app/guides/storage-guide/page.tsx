@@ -161,17 +161,6 @@ const sections: StorageSection[] = [
         ],
       },
       {
-        name: "G-MIS v2.1",
-        version: "1.19+",
-        creators: "GanglesXIII",
-        sorts: "MIS + bulk + non-stackable coverage, optional full-box path with secondary input.",
-        speed: "Up to ~9x hopper speed under optimal conditions (~1x average stated).",
-        size: "57x86x84 decorated (34515 blocks).",
-        extras: "Chunkloaders and safety features.",
-        issues: "Guide notes flag unstackable reliability and potential lag in heavy MIS usage.",
-        links: [],
-      },
-      {
         name: "CartMIS v3",
         version: "1.19+",
         creators: "Inspector Talon, RaPsCaLlioN1138, Christone",
