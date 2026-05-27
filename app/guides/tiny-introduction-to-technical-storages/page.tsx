@@ -27,7 +27,7 @@ const recommendedVideos = [
   },
   { title: "Item Alignment Guide", href: "https://youtu.be/bW4Z35NWKys", author: "NicoisLOST" },
   {
-    title: "Clocks Overview + Unusual Components",
+    title: "Clocks Overview",
     href: "https://youtu.be/_GOG0UWTZ7I",
     author: "ilmango",
     extraHref: "https://youtu.be/0SlBt010FL4",
