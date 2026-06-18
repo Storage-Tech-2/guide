@@ -21,6 +21,11 @@ export const metadata: Metadata = {
 const recommendedVideos = [
   { title: "NoisyMIS", href: "https://youtu.be/LDBwWtsDjxY", author: "RaPsCaLLioN1138" },
   {
+    title: "Redstone Basics",
+    href: "https://www.youtube.com/playlist?list=PLbk9vhWr0mJ-OAsdp0kztHR7dkrPU9Kw0",
+    author: "Gorgio"
+  },
+  {
     title: "Practical Redstone Reloaded",
     href: "https://youtube.com/playlist?list=PLmEBf0WZp2qs8aoteq1SaMg2pm-IILr88",
     author: "Emdy",
